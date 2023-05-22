@@ -1,0 +1,35 @@
+<mat-tab-group>
+  <mat-tab #publicTab label="Public">
+    <h1 mat-dialog-title>Create a Public Meeting</h1>
+    <div mat-dialog-content>Anyone with the meeting code can join!</div>
+  </mat-tab>
+  <mat-tab label="Invite Only">
+    <h1 mat-dialog-title>Invite a Friend to a Private Meeting</h1>
+    <div *ngIf="friends.length === 0" mat-dialog-content>
+      No friends to invite.
+    </div>
+    <mat-selection-list
+      *ngIf="friends.length > 0"
+      class="friends-list"
+      [multiple]="false"
+      (selectionChange)="onSelect($event)"
+    >
+      <mat-list-option *ngFor="let friend of friends" [value]="friend">
+        {{ friend.username }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-tab>
+</mat-tab-group>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button
+    mat-button
+    [disabled]="selectedFriend == null && !publicTab.isActive"
+    [mat-dialog-close]="{
+      isPublic: publicTab.isActive,
+      friend: selectedFriend
+    }"
+  >
+    Create Meeting
+  </button>
+</div>

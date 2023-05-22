@@ -1,0 +1,36 @@
+.container {
+  font-size: 20px;
+  text-align: center;
+
+  .main-landing-text {
+    font-size: 2em;
+    font-weight: bolder;
+    color: #fff;
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .sub-landing-text {
+    font-size: 0.75em;
+    font-weight: bold;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+    margin-top: 4%;
+  }
+
+  .app-image {
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    height: 350px;
+    min-width: 100%;
+    margin-top: 5%;
+    background: url("../../../assets/images/app-image.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+    clear: both;
+    background-position: top center;
+    filter: drop-shadow(0 0 15px white);
+  }
+}

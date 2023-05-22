@@ -1,0 +1,135 @@
+.btn {
+  width: 30%;
+  height: 40px;
+  margin-left: auto;
+  margin-right: 5.5%;
+  margin-top: 5%;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+  background: #017e15;
+  border: 2px solid black;
+  padding: 10px 20px 10px 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.login-btn {
+  margin-left: auto;
+  margin-right: 4%;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.form-area {
+  width: 100%;
+  height: 100%;
+  background-color: #1c1e2ec7;
+  border: black 4px solid;
+  border-radius: 50px;
+  font-weight: bold;
+  padding: 10px 5px;
+  margin-bottom: 30px;
+}
+
+#login {
+  margin-top: 9%;
+  font-size: 20px;
+  text-align: center;
+}
+
+#user-form-area {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  height: 100%;
+}
+
+.info-form {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+
+  .form-title {
+    width: 50%;
+    font-weight: bold;
+    margin: -20px auto 15px auto;
+    padding: 10px 0px 10px 0px;
+    background-color: #282a39;
+    color: rgb(224, 224, 224);
+    border-radius: 7px 7px 7px 7px;
+  }
+
+  .form-element {
+    width: 90%;
+    height: 40px;
+    margin: 0px auto 0px auto;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    border: 3px solid black;
+  }
+}
+
+label {
+  margin-top: 5%;
+  margin-left: 5.5%;
+  margin-right: auto;
+  text-align: left;
+  font-weight: bold;
+  display: block;
+  color: white;
+
+  &::after {
+    content: ": ";
+  }
+}
+
+.link-text {
+  font-weight: bold;
+  font-size: 15px;
+  color: #b3b3df;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+#info-message {
+  color: #adadb8;
+  font-style: italic;
+}
+
+#forgot-password {
+  display: flex;
+  margin-top: 0px;
+  margin-left: 5.5%;
+  margin-right: auto;
+  text-align: left;
+  font-weight: bold;
+  font-size: 15px;
+  color: #b3b3df;
+}
+
+.submit-link {
+  margin-top: 7%;
+  margin-right: auto;
+  margin-left: 5.5%;
+}
+
+#submit-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

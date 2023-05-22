@@ -1,0 +1,76 @@
+.friend-card {
+  justify-content: space-between;
+  margin: 0 auto;
+  background-color: #282a39;
+  height: 75px;
+  border-radius: 10px;
+  padding: 0 25px;
+  margin-bottom: 30px;
+  width: 98%;
+
+  .user {
+    gap: 10px;
+
+    .profile-photo {
+      width: 45px;
+      height: 45px;
+    }
+
+    .username {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .remove-friend-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(206, 86, 86);
+    color: white;
+    font-weight: 500;
+  }
+
+  .request-buttons {
+    display: flex;
+    gap: 15px;
+
+    .accept-request-icon {
+      width: 35%;
+      height: 35%;
+      background-image: url("../../../../assets/images/tick.png");
+    }
+
+    .deny-request-icon {
+      width: 30%;
+      height: 30%;
+      background-image: url("../../../../assets/images/close.png");
+    }
+
+    .accept-request-btn,
+    .deny-request-btn {
+      width: 50px;
+      height: 50px;
+      background-color: #21232d;
+      border-radius: 50%;
+    }
+
+    .accept-request-icon,
+    .deny-request-icon {
+      display: inline-block;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .remove-friend-btn,
+  .accept-request-btn,
+  .deny-request-btn {
+    cursor: pointer;
+    transition: opacity 100ms;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

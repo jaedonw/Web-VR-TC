@@ -1,0 +1,118 @@
+<div class="shapes-background">
+  <app-header></app-header>
+  <div id="login" *ngIf="!isAuth && isInit">
+    <p id="error-message" class="error-text hidden">{{ errorText }}</p>
+    <div class="row" id="add-user-form">
+      <div class="col-3 col-sm-2" id="image-form-left-spacer"></div>
+      <div class="col-auto col-centered form-area" id="user-form-area">
+        <form
+          class="info-form"
+          id="user-form"
+          (submit)="onSubmit($event)"
+          (keydown.enter)="$event.preventDefault()"
+        >
+          <div id="login-title" class="form-title">{{ titleText }}</div>
+          <p id="info-message" class="hidden">{{ infoText }}</p>
+          <label id="username-label" for="username">{{ usernameText }}</label>
+          <input
+            type="text"
+            id="login-username"
+            class="form-element"
+            name="username"
+            required
+          />
+          <div id="password-section">
+            <label id="password-label" for="password">Password</label>
+            <input
+              type="password"
+              id="login-password"
+              class="form-element"
+              name="password"
+            />
+            <div id="forgot-password-section">
+              <a
+                id="forgot-password"
+                class="link-text"
+                (click)="forgotPassword()"
+                >Forgot your Password?</a
+              >
+            </div>
+          </div>
+          <div id="phone-section" class="hidden">
+            <label id="phone-label" for="phone">Phone Number</label>
+            <input
+              type="text"
+              id="login-phone"
+              class="form-element"
+              name="phone"
+              maxlength="14"
+              (keypress)="phoneFormatter($event)"
+            />
+          </div>
+          <div id="submit-section">
+            <a
+              id="create-account"
+              class="link-text submit-link"
+              (click)="createAccount()"
+              >Create Account</a
+            >
+            <a
+              id="forgot-login-account"
+              class="link-text submit-link hidden"
+              (click)="forgotToLogin()"
+              >Back to Login</a
+            >
+            <a
+              id="create-login-account"
+              class="link-text submit-link hidden"
+              (click)="createToLogin()"
+              >Back to Login</a
+            >
+            <button
+              id="signin"
+              type="submit"
+              class="btn login-btn"
+              (click)="login()"
+            >
+              Login
+            </button>
+            <button
+              id="signup"
+              type="submit"
+              class="btn login-btn hidden"
+              (click)="signup()"
+            >
+              Sign Up
+            </button>
+            <button
+              id="password-recover"
+              type="submit"
+              class="btn login-btn hidden"
+              (click)="recoverPassword()"
+            >
+              Submit
+            </button>
+            <button
+              id="verify-code"
+              type="submit"
+              class="btn login-btn hidden"
+              (click)="verifyCode()"
+            >
+              Submit
+            </button>
+            <button
+              id="new-password"
+              type="submit"
+              class="btn login-btn hidden"
+              (click)="newPassword()"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-3 col-sm-2" id="comment-form-right-spacer"></div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

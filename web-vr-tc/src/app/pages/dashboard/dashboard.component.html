@@ -1,0 +1,33 @@
+<div class="dashboard">
+  <app-header class="header"></app-header>
+  <div class="dashboard-container">
+    <div class="flex-center meetings-section">
+      <div class="flex-center buttons-container">
+        <button
+          class="flex-center meeting-btn new-meeting-btn"
+          (click)="createMeeting()"
+        >
+          <span class="button-icon"></span>
+          New Meeting
+        </button>
+        <button
+          class="flex-center meeting-btn join-meeting-btn"
+          (click)="joinMeeting()"
+        >
+          <span class="button-icon"></span>
+          Join Meeting
+        </button>
+      </div>
+    </div>
+    <app-friends-manager
+      class="friends-section"
+      [friends]="friends"
+      [friendRequests]="friendRequests"
+      (sendFriendRequest)="sendFriendRequest($event)"
+      (getFriendRequests)="getFriendRequests()"
+      (acceptFriendRequest)="acceptFriendRequest($event)"
+      (removeFriend)="removeFriend($event)"
+      (getFriends)="getFriends()"
+    ></app-friends-manager>
+  </div>
+</div>

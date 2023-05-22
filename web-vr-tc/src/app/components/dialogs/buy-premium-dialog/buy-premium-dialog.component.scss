@@ -1,0 +1,16 @@
+.container {
+  background-color: #3f51b5;
+
+  .font-white {
+    color: white !important;
+  }
+
+  .logo {
+    background: url("../../../../assets/images/web-vr-tc-premium-logo.png")
+      no-repeat;
+    aspect-ratio: 12/1;
+    height: 30px;
+    background-size: 100%;
+    display: block;
+  }
+}

@@ -1,0 +1,229 @@
+<div id="app-video-call">
+  <app-header></app-header>
+  <div class="row">
+    <div id="video-container" class="col-auto">
+      <video
+        #selfVideo
+        id="self-video"
+        class="video-display"
+        autoplay
+        playsinline
+        [muted]="true"
+      ></video>
+      <video
+        #peerVideo
+        id="peer-video"
+        class="video-display"
+        autoplay
+        playsinline
+      ></video>
+
+      <a-scene
+        environment="preset: default"
+        embedded
+        color-space="sRGB"
+        renderer="colorManagement: true, physicallyCorrectLights"
+        vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false"
+        *ngIf="!isinBase"
+      >
+        <a-camera
+          position-listener
+          id="camera"
+          position="0 3 0"
+          zoom="1"
+          bounded="type: box; objects: .boundary"
+        >
+          <a-cursor id="cursor"></a-cursor>
+        </a-camera>
+        <a-entity
+          person
+          class="peer-video-container"
+          id="person-model"
+          gltf-model="../../../assets/models/lowpoly_person/scene.gltf"
+          position="0 0 -5"
+          width="1.3"
+          height="1"
+          depth="1"
+          scale="0.4 0.4 0.4"
+          visible="true"
+        >
+          <a-box
+            id="self-box-person"
+            material="src: #peer-video"
+            position="-0.5 8.5 0"
+            height="1.8"
+            width="1.8"
+            depth="1.4"
+            segments-height="25"
+            segments-width="25"
+          ></a-box>
+          <a-box
+            id="hide-box-person"
+            material="color: #964B00"
+            position="-0.5 8.5 -0.02"
+            height="1.85"
+            width="1.85"
+            depth="1.4"
+            segments-height="25"
+            segments-width="25"
+          ></a-box>
+        </a-entity>
+
+        <a-entity
+          robot
+          class="peer-video-container"
+          id="robot-model"
+          gltf-model="../../../assets/models/robot/scene.gltf"
+          position="0 0 -5"
+          width="1.3"
+          height="1"
+          depth="1"
+          scale="4 4 4"
+          visible="false"
+        >
+          <a-box
+            id="self-box-robot"
+            material="src: #peer-video"
+            position="0 0.68 0"
+            height="0.4"
+            width="0.4"
+            depth="0.57"
+            segments-height="25"
+            segments-width="25"
+          ></a-box>
+          <a-box
+            id="hide-box-robot"
+            material="color: #beb4de"
+            position="0 0.68 -0.001"
+            height="0.41"
+            width="0.41"
+            depth="0.57"
+            segments-height="25"
+            segments-width="25"
+          ></a-box>
+        </a-entity>
+
+        <a-entity
+          dragon
+          class="peer-video-container"
+          id="dragon-model"
+          gltf-model="../../../assets/models/dragon_low_poly/scene.gltf"
+          position="0 0 -5"
+          width="1"
+          height="1"
+          depth="1"
+          scale="0.45 0.52 0.6"
+          visible="false"
+        >
+          <a-box
+            id="self-box-dragon"
+            material="src: #peer-video"
+            position="0 5.5 3.5"
+            height="1.9"
+            width="2.2"
+            depth="2.4"
+            segments-height="25"
+            segments-width="25"
+          ></a-box>
+          <a-box
+            id="hide-box-dragon"
+            material="color: #4a0114"
+            position="0 5.5 3.48"
+            height="1.95"
+            width="2.25"
+            depth="2.4"
+            segments-height="25"
+            segments-width="25"
+          ></a-box>
+        </a-entity>
+
+        <a-entity
+          steve
+          class="peer-video-container"
+          id="steve-model"
+          gltf-model="../../../assets/models/steve/source/model.gltf"
+          position="0 0 -5"
+          width="1.3"
+          height="1"
+          depth="1"
+          scale="1.8 1.8 1.8"
+          visible="false"
+        >
+          <a-box
+            id="self-box-steve"
+            material="src: #peer-video"
+            position="0 1.75 0"
+            height="0.5"
+            width="0.6"
+            depth="0.55"
+            segments-height="25"
+            segments-width="25"
+            rotation="0 180 0"
+          ></a-box>
+          <a-box
+            id="hide-box-steve"
+            material="color: #a97d64"
+            position="0 1.75 0.005"
+            height="0.51"
+            width="0.61"
+            depth="0.55"
+            segments-height="25"
+            segments-width="25"
+            rotation="0 180 0"
+          ></a-box>
+        </a-entity>
+      </a-scene>
+
+      <app-call-controls
+        (toggleMute)="toggleMute()"
+        (toggleDeafen)="toggleDeafen()"
+        (toggleDisableVideo)="toggleDisableVideo()"
+        (disconnect)="disconnect()"
+      ></app-call-controls>
+    </div>
+    <div id="filters" class="col-3 col-sm-4">
+      <app-filter-options
+        [isUserPremium]="isUserPremium"
+        (activateEnvironment)="activateEnvironment($event)"
+        (activateProp)="activateProp($event)"
+        (activateColor)="activateColor($event)"
+      ></app-filter-options>
+      <div id="messaging" class="col-right">
+        <button
+          id="open-messages"
+          (click)="openMessages()"
+          *ngIf="!chatOpen"
+        ></button>
+        <button
+          id="new-messages"
+          (click)="openMessages()"
+          *ngIf="newMessages"
+        ></button>
+        <div id="messages-container" *ngIf="chatOpen">
+          <div id="messages-header">
+            <div id="messages-title">Messages</div>
+            <button id="close-messages" (click)="closeMessages()"></button>
+          </div>
+          <div id="messages-content">
+            <div id="messages-list">
+              <div *ngFor="let message of messages" class="message">
+                <div class="message-sender">{{ message.sender }}</div>
+                <div class="message-content">{{ message.content }}</div>
+              </div>
+            </div>
+            <div id="message-input">
+              <input
+                type="text"
+                id="message-input-field"
+                name="message"
+                (keydown.enter)="sendMessage()"
+              />
+              <button id="send-message" (click)="sendMessage()"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

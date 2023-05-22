@@ -1,0 +1,90 @@
+@import "../../../styles/colors.scss";
+
+.dashboard {
+  height: 100vh;
+  background-color: $background-color-primary;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .header {
+    flex: 1;
+  }
+
+  .meetings-section,
+  .friends-section {
+    background-color: $background-color-secondary;
+    border-radius: 25px;
+  }
+
+  .dashboard-container {
+    height: 90%;
+    padding: 0px 40px 40px 40px;
+    display: flex;
+    gap: 30px;
+
+    .meetings-section {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .buttons-container {
+        flex-direction: column;
+        gap: 30px;
+
+        .meeting-btn {
+          flex: 1;
+          padding: 50px;
+          color: white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+          border: none;
+          border-radius: 15px;
+          font-size: 20px;
+          font-weight: bold;
+          gap: 15px;
+          cursor: pointer;
+          transition: opacity 100ms;
+
+          .button-icon {
+            display: inline-block;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.25);
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+          }
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+
+        .new-meeting-btn {
+          background-color: #ff742e;
+
+          .button-icon {
+            background-image: url("../../../assets/images/video-white.png");
+          }
+        }
+
+        .join-meeting-btn {
+          background-color: #0e78f9;
+
+          .button-icon {
+            background-image: url("../../../assets/images/add.png");
+          }
+        }
+      }
+    }
+
+    .friends-section {
+      flex: 1;
+      height: 100%;
+    }
+  }
+}

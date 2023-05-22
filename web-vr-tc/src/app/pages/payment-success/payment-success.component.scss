@@ -1,0 +1,43 @@
+@import "../../../styles/colors.scss";
+
+.payment-success {
+  height: 100vh;
+  background-color: $background-color-primary;
+  color: white;
+
+  .container {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 20px;
+
+    .logo {
+      background: url("../../../assets/images/web-vr-tc-premium-logo.png")
+        no-repeat;
+      height: 35px;
+      aspect-ratio: 12/1;
+      background-size: 100%;
+      display: block;
+    }
+
+    .message,
+    .dashboard-link {
+      font-weight: 500;
+    }
+
+    .dashboard-link {
+      border: 2px solid white;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px 8px 16px;
+      border-radius: 15px;
+      transition: background-color 200ms;
+
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: $background-color-primary;
+      }
+    }
+  }
+}

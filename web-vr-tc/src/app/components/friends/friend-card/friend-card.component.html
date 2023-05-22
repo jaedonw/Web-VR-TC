@@ -1,0 +1,24 @@
+<div class="flex-center friend-card">
+  <div class="flex-center user">
+    <img
+      class="profile-photo"
+      src="../../../assets/images/user.png"
+      alt="user profile photo"
+    />
+    <span class="username">{{ friend.username }}</span>
+  </div>
+  <span
+    *ngIf="!isRequest"
+    class="remove-friend-btn"
+    (click)="removeUserFriend()"
+    >Remove Friend</span
+  >
+  <div *ngIf="isRequest" class="request-buttons">
+    <span class="flex-center accept-request-btn" (click)="acceptRequest()">
+      <span class="accept-request-icon"></span>
+    </span>
+    <span class="flex-center deny-request-btn" (click)="removeUserFriend()">
+      <span class="deny-request-icon"></span>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<header class="row header">
+  <div
+    class="flex-center col-3 header-section"
+    [ngClass]="{ 'justify-start': isAuth }"
+  >
+    <span id="logo" (click)="routeHome()"></span>
+  </div>
+  <div class="col-auto"></div>
+  <div
+    class="flex-center col-3 header-section"
+    [ngClass]="{ 'justify-end': isAuth }"
+  >
+    <a *ngIf="!isAuth" id="signin-button" class="header-btn" (click)="login()"
+      >Login</a
+    >
+    <div
+      *ngIf="isAuth"
+      class="flex-center avatar"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <img
+        class="profile-photo"
+        src="../../../assets/images/user.png"
+        alt="user profile photo"
+      />
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button
+          *ngIf="!isUserPremium"
+          mat-menu-item
+          (click)="openBuyPremiumDialog()"
+        >
+          <mat-icon>attach_money</mat-icon>
+          <span>Buy Premium</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</header>

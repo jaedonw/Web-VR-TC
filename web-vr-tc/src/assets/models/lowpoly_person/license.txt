@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lowpoly person
+* source:	https://sketchfab.com/3d-models/lowpoly-person-5f9bd3bdcf324696866cd6272657c829
+* author:	Medvid (https://sketchfab.com/andriypavel1953)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lowpoly person" (https://sketchfab.com/3d-models/lowpoly-person-5f9bd3bdcf324696866cd6272657c829) by Medvid (https://sketchfab.com/andriypavel1953) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

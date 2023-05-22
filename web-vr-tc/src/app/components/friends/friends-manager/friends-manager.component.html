@@ -1,0 +1,47 @@
+<div class="friends-manager">
+  <div class="flex-center header">
+    <span class="title">Friends</span>
+    <ul class="sections">
+      <li
+        class="section"
+        [ngClass]="{ selected: showAll }"
+        (click)="toggleShowAll()"
+      >
+        All
+      </li>
+      <li
+        class="section"
+        [ngClass]="{ selected: !showAll }"
+        (click)="toggleShowAll()"
+      >
+        Requests
+      </li>
+    </ul>
+    <span class="add-friend-btn" (click)="openAddFriendDialog()"
+      >Add Friend</span
+    >
+  </div>
+  <div *ngIf="showAll" class="friends-list">
+    <p *ngIf="friends?.length === 0" class="no-friends-msg">
+      There are no friends to display.
+    </p>
+    <app-friend-card
+      *ngFor="let friend of friends"
+      [friend]="friend"
+      [isRequest]="false"
+      (removeFriend)="removeUserFriend($event)"
+    ></app-friend-card>
+  </div>
+  <div *ngIf="!showAll" class="friends-list">
+    <p *ngIf="friendRequests?.length === 0" class="no-friends-msg">
+      You have no pending friend requests.
+    </p>
+    <app-friend-card
+      *ngFor="let request of friendRequests"
+      [friend]="request"
+      [isRequest]="true"
+      (acceptFriendRequest)="acceptRequest($event)"
+      (removeFriend)="removeUserFriend($event)"
+    ></app-friend-card>
+  </div>
+</div>

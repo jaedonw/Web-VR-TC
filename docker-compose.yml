@@ -1,0 +1,129 @@
+version: "3"
+
+services:
+  cli:
+    build: ./cli
+    image: evgeniy-khyst/letsencrypt-docker-compose-cli
+    user: ${CURRENT_USER}
+    group_add:
+      - ${DOCKER_GROUP}
+    environment:
+      - COMPOSE_PROJECT_NAME
+      - CURRENT_USER=root
+      - DOCKER_GROUP
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/workdir
+    profiles:
+      - config
+
+  nginx:
+    build: ./nginx
+    image: evgeniy-khyst/nginx
+    environment:
+      - DRY_RUN
+    volumes:
+      - ./config.json:/letsencrypt-docker-compose/config.json:ro
+      - ./nginx-conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-conf/conf.d:/etc/nginx/conf.d:ro
+      - ./html:/var/www/html:ro
+      - nginx_conf_ssl:/etc/nginx/ssl
+      - letsencrypt_certs:/etc/letsencrypt
+      - certbot_acme_challenge:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    healthcheck:
+      test: ["CMD", "nc", "-z", "nginx", "80"]
+      interval: 30s
+      timeout: 30s
+      start_period: 30s
+      retries: 10
+    restart: unless-stopped
+
+  certbot:
+    build: ./certbot
+    image: evgeniy-khyst/certbot
+    environment:
+      - DRY_RUN
+    volumes:
+      - ./config.json:/letsencrypt-docker-compose/config.json:ro
+      - letsencrypt_certs:/etc/letsencrypt
+      - certbot_acme_challenge:/var/www/certbot
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'test -n "$$(ls -A /etc/letsencrypt/live/)" || test "$$DRY_RUN" == "true" || exit 1',
+        ]
+      interval: 30s
+      timeout: 30s
+      start_period: 30s
+      retries: 5
+    depends_on:
+      nginx:
+        condition: service_healthy
+    restart: unless-stopped
+
+  cron:
+    build: ./cron
+    image: evgeniy-khyst/cron
+    environment:
+      - COMPOSE_PROJECT_NAME
+      - DRY_RUN
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/workdir:ro
+    depends_on:
+      certbot:
+        condition: service_healthy
+    restart: unless-stopped
+
+  redis:
+    restart: always
+    image: redis:5-alpine
+    expose:
+      - 6379
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=webvrtc
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=root
+    expose:
+      - 3306
+    command: --init-file /data/application/init.sql
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ./init.sql:/data/application/init.sql
+  frontend:
+    image: ghcr.io/uoft-utsc-cs-sandbox/web-vr-tc-jaedonw:deployment
+    container_name: frontend
+    restart: always
+    expose:
+      - 80
+    environment:
+      - VIRTUAL_HOST=webvrtc.me
+      - LETSENCRYPT_HOST=webvrtc.me
+  backend:
+    image: ghcr.io/uoft-utsc-cs-sandbox/backend-jaedonw:deployment
+    container_name: backend
+    restart: always
+    expose:
+      - 3000
+    environment:
+      - VIRTUAL_HOST=api.webvrtc.me
+      - LETSENCRYPT_HOST=api.webvrtc.me
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - mysql
+
+volumes:
+  nginx_conf_ssl:
+  letsencrypt_certs:
+  certbot_acme_challenge:
+  mysql-volume:

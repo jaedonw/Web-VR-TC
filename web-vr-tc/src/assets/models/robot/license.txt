@@ -1,0 +1,11 @@
+Model Information:
+* title:	Robot
+* source:	https://sketchfab.com/3d-models/robot-9bbe154a853f4fac94e20dfc77f5ee0c
+* author:	Denis Shikunov (https://sketchfab.com/felo3113)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Robot" (https://sketchfab.com/3d-models/robot-9bbe154a853f4fac94e20dfc77f5ee0c) by Denis Shikunov (https://sketchfab.com/felo3113) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

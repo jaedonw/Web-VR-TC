@@ -1,0 +1,43 @@
+<mat-tab-group>
+  <mat-tab #publicTab label="Public">
+    <h1 mat-dialog-title>Join a Public Meeting</h1>
+    <div mat-dialog-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a meeting code.</mat-label>
+        <input matInput [(ngModel)]="meetingCode" />
+      </mat-form-field>
+    </div>
+  </mat-tab>
+  <mat-tab label="Invite Only">
+    <h1 mat-dialog-title>Meet with a Friend</h1>
+    <div *ngIf="invitations.length === 0" mat-dialog-content>
+      No meeting invitations.
+    </div>
+    <mat-selection-list
+      *ngIf="invitations.length > 0"
+      class="invitations-list"
+      [multiple]="false"
+      (selectionChange)="onSelect($event)"
+    >
+      <mat-list-option
+        *ngFor="let invitation of invitations"
+        [value]="invitation"
+      >
+        {{ invitation.inviter.username }}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-tab>
+</mat-tab-group>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button
+    mat-button
+    [disabled]="selectedInvitation == null && !publicTab.isActive"
+    [mat-dialog-close]="{
+      meetingCode: meetingCode,
+      meetingId: selectedInvitation?.id
+    }"
+  >
+    Join Meeting
+  </button>
+</div>

@@ -1,0 +1,138 @@
+<div class="filters">
+  <div class="bordered small-space">
+    <h1>Avatar Options</h1>
+    <div class="col-centered">
+      <button
+        id="baseButton"
+        (click)="onActivateProp('base')"
+        (mouseover)="onHoverPreview('text-preview')"
+      ></button>
+      <button
+        id="personButton"
+        (click)="onActivateProp('person')"
+        (mouseover)="onHoverPreview('person-preview')"
+      ></button>
+      <button
+        id="steveButton"
+        (click)="onActivateProp('steve')"
+        (mouseover)="onHoverPreview('steve-preview')"
+      ></button>
+      <div class="premium-options" *ngIf="isUserPremium">
+        <button
+          id="dragonButton"
+          (click)="onActivateProp('dragon')"
+          (mouseover)="onHoverPreview('dragon-preview')"
+        ></button>
+        <button
+          id="robotButton"
+          (click)="onActivateProp('robot')"
+          (mouseover)="onHoverPreview('robot-preview')"
+        ></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bordered medium-space">
+    <h1>Avatar Color Options</h1>
+    <div class="col-centered">
+      <button
+        id="defaultButton"
+        (click)="onActivateColor('default')"
+        (mouseover)="onHoverPreview('text-preview')"
+      ></button>
+      <span
+        [style.color]="color"
+        [cpPosition]="'left'"
+        [cpOKButton]="true"
+        [cpPositionOffset]="'50%'"
+        [cpPositionRelativeToArrow]="true"
+        [(colorPicker)]="color"
+        (cpToggleChange)="onActivateColorSelected($event)"
+        ><button
+          id="colorButton"
+          (mouseover)="onHoverPreview('text-preview')"
+        ></button>
+      </span>
+    </div>
+  </div>
+
+  <div class="bordered medium-space">
+    <h1>Environment Options</h1>
+    <div class="col-centered">
+      <button
+        id="defaultButton"
+        (click)="onActivateEnvironment('default')"
+        (mouseover)="onHoverPreview('text-preview')"
+      ></button>
+      <button
+        id="forestButton"
+        (click)="onActivateEnvironment('forest')"
+        (mouseover)="onHoverPreview('forest-preview')"
+      ></button>
+      <button
+        id="osirisButton"
+        (click)="onActivateEnvironment('osiris')"
+        (mouseover)="onHoverPreview('osiris-preview')"
+      ></button>
+      <div class="premium-options" *ngIf="isUserPremium">
+        <button
+          id="archesButton"
+          (click)="onActivateEnvironment('arches')"
+          (mouseover)="onHoverPreview('arches-preview')"
+        ></button>
+        <button
+          id="goldmineButton"
+          (click)="onActivateEnvironment('goldmine')"
+          (mouseover)="onHoverPreview('goldmine-preview')"
+        ></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bordered medium-space">
+    <h1>Preview</h1>
+    <div class="col-centered">
+      <p id="text-preview">Hover over an avatar/environment to preview it!</p>
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/personPreview.png"
+        id="person-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/stevePreview.png"
+        id="steve-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/dragonPreview.png"
+        id="dragon-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/robotPreview.png"
+        id="robot-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/forestPreview.png"
+        id="forest-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/osirisPreview.png"
+        id="osiris-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/archesPreview.png"
+        id="arches-preview"
+      />
+      <img
+        class="preview-image hidden"
+        src="../../../assets/images/goldminePreview.png"
+        id="goldmine-preview"
+      />
+    </div>
+  </div>
+</div>
