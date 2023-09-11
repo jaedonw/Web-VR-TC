@@ -1,0 +1,1 @@
+RUN docker compose pull frontend && docker compose pull backend && docker compose build && docker compose up -d
